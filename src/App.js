@@ -1,3 +1,5 @@
+// 以下所有关于react-router的总结（和=子路由，嵌套路由相关的内容，都是由于exact的关系，path="/solution/one"再针对于没有exact属性的父路由path="/solution"是肯定会匹配到的，再对本身进行exact全匹配，可以实现嵌套路由），
+// react-routerV4放弃使用集中路由表，如果使用建议路由平铺书写，不嵌套，结合手动push一个路由进行跳转使用
 import React, { Component } from 'react';
 import './App.css';
 import { NavLink, withRouter } from 'react-router-dom';
