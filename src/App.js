@@ -12,26 +12,35 @@ import { num_add, num_dis } from './redux/action/num-action'
 
 //将state.counter绑定到props的counter
 const mapStateToProps = (state) => {
-    return {
-        count: state.count
-    }
+  return {
+    count: state.count
+  }
 };
 //将action的所有方法绑定到props上，加上connect就能传递下去
 const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-        increment: () => dispatch(num_add(2)),
-        decrement: () => dispatch(num_dis(2))
-    }
+  return {
+    increment: () => dispatch(num_add(2)),
+    decrement: () => dispatch(num_dis(2))
+  }
 };
 class App extends Component {
   constructor(props) {
     super(props);
     console.log(this.props);
+    this.state = {
+      count: 0
+    }
+  }
+  onChange = (e) => {
+    // e.nativeEvent.stopImmediatePropagation();
+    this.setState({
+      count: this.state.count + 1
+    })
   }
   render() {
     return (
       <div className="App">
-        <p>我是app</p>
+        <p onClick={(e) => this.onChange(e)}>我是app{this.state.count}</p>
         <History></History>
         {/* 此方式只能从"其他"页面跳转过来 */}
         <NavLink to={{ pathname: '/inbox/', query: { day: '首页' } }} >首页</NavLink>
